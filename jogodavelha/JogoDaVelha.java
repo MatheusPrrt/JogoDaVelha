@@ -1,34 +1,38 @@
 package jogodavelha;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
-public class JogoDaVelha extends JFrame{
-    JButton[] bt = new JButton[9];
+import javax.swing.*; //Biblioteca Swing, Ultilizamos "*" para importar tudo o que é da biblioteca de Swing no código. 
+public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam atributos e métodos de outras classes.
+    JButton[] bt = new JButton[9];  // Vetor de botões com 9 posições ou seja 9 botões.
     JLabel placar = new JLabel("placar");
     JLabel px = new JLabel("X 0");
     JLabel po = new JLabel("O 0");
     JButton novo = new JButton("Novo Jogo");
     JButton zerar = new JButton("Zerar Placar");
+    JButton help = new JButton("Ajuda");
     int PX = 0;
     int PO = 0;
     boolean xo = false;
     boolean[] click = new boolean[9];
     public JogoDaVelha(){
-        setVisible(true);
-        setTitle("Jogo Da Velha");
-        setDefaultCloseOperation(3);
-        setLayout(null);
-        setBounds(250,100,700,500); 
+        setVisible(true);            // Deixa a Janela Visivel.
+        setTitle("Jogo Da Velha");   // Titulo da Janela.
+        setDefaultCloseOperation(3); // Ultilizado para interromper execução da aplicação ao clicar no(x) da Janela.
+        setLayout(null);             // Determina o Layout.+
+        setBounds(250,100,700,500); // Determina a da janela ao abrir a aplicação e o tamanho.
         add(placar);
         add(px);
         add(po);
         add(novo);
         add(zerar);
+        add(help);
         placar.setBounds(475,50,100,30);
         px.setBounds(450,75,100,30);
         po.setBounds(500,75,100,30);
         novo.setBounds(425,100,140,30);
         zerar.setBounds(425,150,140,30);
+        help.setBounds(425,200,140,30);
         novo.addActionListener(new java.awt.event.ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -42,9 +46,16 @@ public class JogoDaVelha extends JFrame{
                 PO = 0;
                 PX = 0;
                 atualizar();
+                limpar();
                 
             }             
         });
+        help.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                new Help();
+       }
+   });        
         
         int count = 0;
         for (int i = 0; i < 3; i++){
@@ -102,7 +113,10 @@ public class JogoDaVelha extends JFrame{
                      click[4] = true;
                      mudar(bt[4]);
                 }
-            }             
+            }
+        public void batata(){
+           JOptionPane.showMessageDialog(null, "Empate!");
+        }
         });
         bt[5].addActionListener(new java.awt.event.ActionListener(){
             @Override
@@ -173,7 +187,9 @@ public class JogoDaVelha extends JFrame{
                  ||(bt[6].getText() == "X" && bt[4].getText() == "X" && bt[2].getText() == "X")) {
             JOptionPane.showMessageDialog(null, "X Ganhou!");
             PX++;
-            atualizar();            
+            atualizar();
+            limpar();
+            
         }else if ((bt[0].getText() == "O" && bt[1].getText() == "O" && bt[2].getText() == "O")
                  ||(bt[3].getText() == "O" && bt[4].getText() == "O" && bt[5].getText() == "O")
                  ||(bt[6].getText() == "O" && bt[7].getText() == "O" && bt[8].getText() == "O")
@@ -185,22 +201,35 @@ public class JogoDaVelha extends JFrame{
             JOptionPane.showMessageDialog(null, "O Ganhou!");
             PO++;
             atualizar();
+            limpar();
+            
         }else if(count == 9){
          JOptionPane.showMessageDialog(null, "Empate!");
          PO--;
          PX--;
          atualizar();
-         limpar();
+         
         }
-    }
+    }     
     public void limpar(){
          for (int i = 0; i < 9; i++){
              bt[i].setText("");
              click[i] = false;               
 }
         }
-    
+    class Help extends JFrame {
+       public Help(){         
+        JTextField Help = new JTextField();
+        add(Help);
+        setVisible(true);
+        setTitle("Ajuda");
+        setDefaultCloseOperation(3);
+        setLayout(new FlowLayout());
+        setBounds(250,100,700,500);
+        Help.setText("https://docs.google.com/document/d/1QGz33YwmGNuEIxSvLKsHlF1zI5hg-gc9YhTFSZKi5b8/edit?usp=sharing"); 
+       }
+    }
     public static void main(String[] args) {
         new JogoDaVelha();
     }
-}
+    }
