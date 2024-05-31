@@ -1,3 +1,4 @@
+
 package jogodavelha;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -223,7 +224,6 @@ public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam a
         add(Help);
         setVisible(true);
         setTitle("Ajuda");
-        setDefaultCloseOperation(3);
         setLayout(new FlowLayout());
         setBounds(250,100,700,500);
         Help.setText("https://docs.google.com/document/d/1QGz33YwmGNuEIxSvLKsHlF1zI5hg-gc9YhTFSZKi5b8/edit?usp=sharing"); 
