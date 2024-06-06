@@ -4,9 +4,9 @@ import java.net.URI;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import javax.swing.*; //Biblioteca Swing, Ultilizamos "*" para importar tudo o que é da biblioteca de Swing no código. 
-public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam atributos e métodos de outras classes.
-    JButton[] bt = new JButton[9];  // Vetor com 9 posições ou seja criamos um vetor de posições 9 para os botões.
+import javax.swing.*; 
+public class JogoDaVelha extends JFrame{  
+    JButton[] bt = new JButton[9];  
     JLabel placar = new JLabel("placar");
     JLabel px = new JLabel("X 0");
     JLabel po = new JLabel("O 0");
@@ -19,11 +19,11 @@ public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam a
     boolean xo = false;
     boolean[] click = new boolean[9];
     public JogoDaVelha(){
-        setVisible(true);            // Deixa a Janela Visivel.
-        setTitle("Jogo Da Velha");   // Titulo da Janela.
-        setDefaultCloseOperation(3); // Ultilizado para interromper execução da aplicação ao clicar no(x) da Janela.
-        setLayout(null);             // Determina o Layout.+
-        setBounds(250,100,700,500); // Determina a da janela ao abrir a aplicação e o tamanho.
+        setVisible(true);           
+        setTitle("Jogo Da Velha");   
+        setDefaultCloseOperation(3); 
+        setLayout(null);             
+        setBounds(250,100,700,500);
         add(placar);
         add(px);
         add(po);
