@@ -1,17 +1,19 @@
-
 package jogodavelha;
+import java.awt.Desktop;
+import java.net.URI;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.*; //Biblioteca Swing, Ultilizamos "*" para importar tudo o que é da biblioteca de Swing no código. 
 public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam atributos e métodos de outras classes.
-    JButton[] bt = new JButton[9];  // Vetor de botões com 9 posições ou seja 9 botões.
+    JButton[] bt = new JButton[9];  // Vetor com 9 posições ou seja criamos um vetor de posições 9 para os botões.
     JLabel placar = new JLabel("placar");
     JLabel px = new JLabel("X 0");
     JLabel po = new JLabel("O 0");
     JButton novo = new JButton("Novo Jogo");
     JButton zerar = new JButton("Zerar Placar");
     JButton help = new JButton("Ajuda");
+    JButton maisAjuda = new JButton("Mais informação");
     int PX = 0;
     int PO = 0;
     boolean xo = false;
@@ -54,10 +56,15 @@ public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam a
         help.addActionListener(new java.awt.event.ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
+                try{
+                URI link = new URI("https://docs.google.com/document/d/1QGz33YwmGNuEIxSvLKsHlF1zI5hg-gc9YhTFSZKi5b8/edit?usp=sharing");
+                Desktop.getDesktop().browse(link);
+               }catch(Exception erro){
+                    System.out.println(erro);
+               }
                 new Help();
        }
    });        
-        
         int count = 0;
         for (int i = 0; i < 3; i++){
              for (int j = 0; j < 3; j++){
@@ -219,17 +226,19 @@ public class JogoDaVelha extends JFrame{  // class extends ou Herança (herdam a
 }
         }
     class Help extends JFrame {
-       public Help(){         
-        JTextField Help = new JTextField();
-        add(Help);
+       public Help(){
         setVisible(true);
-        setTitle("Ajuda");
-        setLayout(new FlowLayout());
+        setTitle("Ajuda");       
         setBounds(250,100,700,500);
-        Help.setText("https://docs.google.com/document/d/1QGz33YwmGNuEIxSvLKsHlF1zI5hg-gc9YhTFSZKi5b8/edit?usp=sharing"); 
+        JTextArea HelpText = new JTextArea("Instruções do Jogo:\n\n1. Dois jogadores alternam turnos.\n2. O primeiro a alinhar 3 símbolos vence.\n3. Boa sorte!\n4 Mais informações: \n5: https://docs.google.com/document/d/1QGz33YwmGNuEIxSvLKsHlF1zI5hg-gc9YhTFSZKi5b8/edit?usp=sharing");
+        HelpText.setOpaque(false);
+        HelpText.setEditable(false);
+        HelpText.setFocusable(false);
+        add(HelpText);
+        setVisible(true);
        }
     }
     public static void main(String[] args) {
         new JogoDaVelha();
     }
-    }
+}
